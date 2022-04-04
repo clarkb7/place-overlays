@@ -1,7 +1,7 @@
 """
 USAGE
 
-BERSERK: python3 overlay.py --pixel-size=1 --top-left 594 202 --input Berserk-ProtectAllies-0.9.png
+BERSERK: python3 overlay.py --pixel-size=1 --top-left 594 194 --input Berserk-ProtectAllies-0.9.png
 BLOODBORN: python3 overlay.py --pixel-size=8 --top-left 921 1435 --input bloodborne-0.1.png
 
 Upload the output file, and get the direct link to it
