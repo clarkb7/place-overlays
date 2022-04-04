@@ -3,21 +3,48 @@
 // @namespace    http://tampermonkey.net/
 // @version      $overlay_version
 // @description  try to take over the canvas!
-// @author       $credits
+// @author       Ruukas, $credits
 // @match        https://hot-potato.reddit.com/embed*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=reddit.com
 // @grant        none
 // ==/UserScript==
+let overlay = null;
+
 if (window.top !== window.self) {
     window.addEventListener('load', () => {
-            document.getElementsByTagName("mona-lisa-embed")[0].shadowRoot.children[0].getElementsByTagName("mona-lisa-canvas")[0].shadowRoot.children[0].appendChild(
-        (function () {
-            const i = document.createElement("img");
-            i.src = "{{ direct_link_url }}";
-            i.style = "position: absolute;left: 0;top: 0;image-rendering: pixelated;width: 2000px;height: 2000px;";
-            console.log(i);
-            return i;
-        })())
+        const shadowRoot = document.getElementsByTagName("mona-lisa-embed")[0].shadowRoot.children[0];
 
+        function toggle(){
+            const parent = shadowRoot.getElementsByTagName("mona-lisa-canvas")[0].shadowRoot.children[0];
+            if(overlay === null){
+                overlay = parent.appendChild((
+                    function () {
+                        const i = document.createElement("img");
+						i.src = "{{ direct_link_url }}";
+                        i.style = "position: absolute;left: 0;top: 0;image-rendering: pixelated;width: 2000px;height: 2000px;";
+                        console.log(i);
+                        return i;
+                    }
+                )());
+            }
+            else{
+                parent.removeChild(overlay);
+                overlay = null;
+            }
+        }
+
+        toggle();
+
+        shadowRoot.appendChild((
+            function () {
+                const button = document.createElement("button");
+                button.innerText = "Toggle overlay";
+                button.onclick = toggle;
+                button.style = "position: absolute;left: 5px;top: 100px;";
+                console.log(button);
+                return button;
+            }
+        )());
     }, false);
 }
+
