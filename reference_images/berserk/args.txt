@@ -1,1 +1,1 @@
---pixel-size=1 --top-left 594 194 --script-name GUTS template --script-version 0.14
+--pixel-size=1 --top-left 594 194 --script-name GUTS template --script-version 0.15
