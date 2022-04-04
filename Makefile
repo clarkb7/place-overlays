@@ -6,9 +6,9 @@ all: $(overlays)
 
 $(templates): %: build/%/overlay.png
 
-build/%/overlay.png: reference_images/%/reference.png reference_images/%/args.txt
+build/%/overlay.png: reference_images/%/reference.png reference_images/%/args.txt reference_images/%/credits.txt monkey.user.js.template overlay.py
 	mkdir -p $(shell dirname $@)
-	python3 overlay.py --input $< $$(cat reference_images/$*/args.txt) --output $@
+	python3 overlay.py --input $< $$(cat reference_images/$*/args.txt) --output $@ --script-template monkey.user.js.template --credits reference_images/$*/credits.txt
 
 clean:
 	rm -rf build

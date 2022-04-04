@@ -8,10 +8,10 @@ Upload the output file, and get the direct link to it
 Fill out the tampermonkey script template, and host somewhere like GIST
 
 """
-
+import os
 import argparse
+import string
 
-import sys
 import PIL
 from PIL import ImageColor
 from PIL import Image, UnidentifiedImageError
@@ -26,6 +26,14 @@ parser.add_argument("--input", type=str, required=True,
     help="File path to input reference image")
 parser.add_argument("--output", type=str, default=None,
     help="File path to output overlay image")
+parser.add_argument("--credits", type=str, default=None,
+    help="File path to credits")
+parser.add_argument("--script-template", type=str, default=None,
+    help="Monkey script template file")
+parser.add_argument("--script-name", type=str, nargs='+', default=None,
+    help="Monkey script name")
+parser.add_argument("--script-version", type=str, default=None,
+    help="Version number for this monkey script")
 args = parser.parse_args()
 
 PIXEL_SIZE = args.pixel_size
@@ -55,3 +63,21 @@ for orig_pix_x in range(0, image_size[0]-PIXEL_SIZE+1, PIXEL_SIZE):
 with open(args.output, 'wb') as f:
     big.save(f)
 
+# Output the template if requested
+if args.script_template is not None:
+    with open(args.script_template, 'r') as f:
+        template = string.Template(f.read())
+    if args.credits:
+        with open(args.credits, 'r') as f:
+            credits = ', '.join(f.read().splitlines(False)).strip()
+    else:
+        credits = None
+    monkey = template.substitute(
+        script_name=' '.join(args.script_name).strip() or '{} overlay'.format(os.path.basename(args.input)),
+        overlay_version=args.script_version or '0.1',
+        credits=credits or 'unknown'
+    )
+    # Put template next to overlay
+    monkey_path = os.path.join(os.path.dirname(args.output), 'monkey.user.js')
+    with open(monkey_path, 'w') as f:
+        f.write(monkey)

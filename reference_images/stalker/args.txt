@@ -1,1 +1,1 @@
---pixel-size=24 --top-left 481 1031
+--pixel-size=24 --top-left 481 1031 --script-name stalker template --script-version 0.4

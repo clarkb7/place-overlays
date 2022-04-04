@@ -1,1 +1,1 @@
---pixel-size=8 --top-left 922 1436
+--pixel-size=8 --top-left 922 1436 --script-name bloodborne template --script-version 0.2
