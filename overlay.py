@@ -44,8 +44,8 @@ big = PIL.Image.new('RGBA', (6000,6000), (255,255,255,0))
 big_map = big.load()
 
 # Copy pixels from ref into new image
-for orig_pix_x in range(0, image_size[0], PIXEL_SIZE):
-    for orig_pix_y in range(0, image_size[1], PIXEL_SIZE):
+for orig_pix_x in range(0, image_size[0]-PIXEL_SIZE+1, PIXEL_SIZE):
+    for orig_pix_y in range(0, image_size[1]-PIXEL_SIZE+1, PIXEL_SIZE):
         # Get the color of the pixel in the middle of the reference pixel
         pixel = pix[orig_pix_x+PIXEL_SIZE//2, orig_pix_y+PIXEL_SIZE//2]
         # 3 pixels per pixel in original
