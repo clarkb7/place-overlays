@@ -1,0 +1,1 @@
+--pixel-size=24 --top-left 481 1031

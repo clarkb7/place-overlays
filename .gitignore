@@ -1,3 +1,4 @@
 *.pyc
 __pycache__
 reference_images/**/*.big.png
+build
