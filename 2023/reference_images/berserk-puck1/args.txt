@@ -1,1 +1,1 @@
---pixel-size=1 --top-left 129 -6 --script-name PUCKSPEZ template 2023 --script-version 0.1
+--pixel-size=1 --top-left 461 -162 --script-name Berserk overlay 2023 --script-version 0.3
