@@ -1,11 +1,10 @@
 """
 USAGE
 
-BERSERK: python3 overlay.py --pixel-size=1 --top-left 594 194 --input Berserk-ProtectAllies-0.9.png
-BLOODBORN: python3 overlay.py --pixel-size=8 --top-left 921 1435 --input bloodborne-0.1.png
+BERSERK: python3 overlay.py --input puck.png --pixel-size=1 --top-left 461 -162
 
 Upload the output file, and get the direct link to it
-Fill out the tampermonkey script template, and host somewhere like GIST
+Fill out the tampermonkey script template, and host somewhere like GIST or pastebin
 
 """
 import os
